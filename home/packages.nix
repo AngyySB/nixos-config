@@ -1,0 +1,34 @@
+{ pkgs, ... }:
+{
+  home.packages = with pkgs; [
+    discord
+    godot
+    obsidian
+    alsa-utils
+    kdePackages.dolphin
+    fastfetch
+    grim
+    slurp
+    wl-clipboard
+    networkmanagerapplet
+    libnotify
+    ripgrep
+    android-studio
+    bat
+    bat-extras.batgrep
+    wayland-scanner
+    #languages
+    kotlin
+    jdk
+    gcc
+    cmake
+    gnumake
+    rustc
+    cargo
+    stack
+    python3
+    go
+    haskellPackages.yabi
+    geteduroam
+  ];
+}
