@@ -12,11 +12,14 @@
     libnotify
     ripgrep
     bat
+    zip
     unzip
     fzf
     zoxide
     swayimg
     imv
+    ttyper
+
     #Languages
     kotlin
     jdk
@@ -33,5 +36,8 @@
     android-studio
     godot
     prismlauncher
+    spotify
+    libreoffice
+    libresprite
   ];
 }

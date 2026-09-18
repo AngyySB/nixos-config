@@ -269,7 +269,7 @@
         enableTelescope = true;
       };
       mini-animate = {
-        enable = true;
+        enable = false;
       };
 
     };
