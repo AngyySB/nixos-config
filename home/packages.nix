@@ -19,7 +19,9 @@
     swayimg
     imv
     ttyper
-
+    claude-code
+    bruno
+    sendme
     #Languages
     kotlin
     jdk

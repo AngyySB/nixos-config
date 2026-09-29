@@ -17,6 +17,27 @@
     ./modules
   ];
 
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      # Crucial Godot/Windowing requirements
+      fontconfig
+      xorg.libX11
+      xorg.libXcursor
+      xorg.libXext
+      xorg.libXi
+      xorg.libXinerama
+      xorg.libXrandr
+      xorg.libXrender
+      libxkbcommon
+      wayland
+
+      # Common audio/graphics requirements (highly recommended for Godot games)
+      alsa-lib
+      libGL
+      vulkan-loader
+    ];
+  };
   # Bootloader.
   boot.initrd.systemd.enable = true;
   boot.loader.timeout = 0;
