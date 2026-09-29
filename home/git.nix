@@ -10,7 +10,7 @@
       "github.com" = {
         HostName = "github.com";
         User = "git";
-        IdentityFile = "~/.ssh/id_ed25519_personal";
+        IdentityFile = "~/.ssh/id_ed25519";
       };
       "git.ntnu.no" = {
         HostName = "git.ntnu.no";
