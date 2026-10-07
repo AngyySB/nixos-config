@@ -36,6 +36,33 @@
       mypi_remote() {
           ssh jonas@100.95.64.57 "$@"
       }
+      mkcd() {
+        mkdir $1 && cd $1
+      }
+      gc() {
+        git commit -m $1
+      }
+      gs() {
+        git status
+      }
+
+      decomp() {
+        for file in "$@"; do
+         if [ -f "$file" ]; then
+           case "$file" in
+            *.tar.bz2)   tar -xf "$file"    ;;
+            *.tar.gz)    tar -xf "$file"    ;;
+            *.tar.xz)    tar -xf "$file"    ;;
+            *.tar)       tar -xf "$file"    ;;
+            *.tgz)       tar -xf "$file"    ;;
+            *.zip)       unzip "$file"      ;;
+            *)           echo "Unknown extension: '$file'" ;;
+          esac
+        else
+          echo "'$file' is not a valid file"
+        fi
+      done
+      }
     '';
     envExtra = ''
       ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT

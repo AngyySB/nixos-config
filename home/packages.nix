@@ -22,9 +22,9 @@
     claude-code
     bruno
     sendme
+    git-lfs
     #Languages
     kotlin
-    jdk
     gcc
     gnumake
     rustc
@@ -41,5 +41,11 @@
     spotify
     libreoffice
     libresprite
+    solaar
+    piper
   ];
+  programs.java = {
+    enable = true;
+    package = pkgs.temurin-bin-17;
+  };
 }

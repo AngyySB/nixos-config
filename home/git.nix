@@ -17,6 +17,12 @@
         User = "git";
         IdentityFile = "~/.ssh/id_ed25519_githubNTNU";
       };
+      "git.gvk.idi.ntnu.no" = {
+        HostName = "git.gvk.idi.ntnu.no";
+
+        User = "git";
+        IdentityFile = "~/.ssh/id_ed25519_gitlab";
+      };
     };
   };
 
@@ -47,6 +53,15 @@
       }
       {
         condition = "hasconfig:remote.*.url:https://git.gvk.idi.ntnu.no/**";
+        contents.user = {
+          name = "jonaherm";
+          email = "jonaherm@stud.ntnu.no";
+        };
+
+      }
+
+      {
+        condition = "hasconfig:remote.*.url:git@git.gvk.idi.ntnu.no:*/**";
         contents.user = {
           name = "jonaherm";
           email = "jonaherm@stud.ntnu.no";

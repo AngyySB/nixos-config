@@ -20,6 +20,7 @@
   programs.nix-ld = {
     enable = true;
     libraries = with pkgs; [
+      zlib
       # Crucial Godot/Windowing requirements
       fontconfig
       xorg.libX11
@@ -52,6 +53,9 @@
   boot.loader.systemd-boot.configurationLimit = 10;
 
   hardware.keyboard.zsa.enable = true;
+  hardware.logitech.wireless.enable = true;
+  services.udev.packages = [ pkgs.solaar ];
+  services.ratbagd.enable = true;
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
