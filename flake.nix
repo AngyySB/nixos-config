@@ -12,7 +12,13 @@
   };
   outputs =
     { nixpkgs, home-manager, ... }@inputs:
+    let
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+    in
     {
+      devShells.x86_64-linux = {
+        opengl = import ./shells/opengl.nix { inherit pkgs; };
+      };
       nixosConfigurations = {
         nix-desktop = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";

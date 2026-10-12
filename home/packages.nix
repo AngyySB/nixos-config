@@ -23,9 +23,11 @@
     bruno
     sendme
     git-lfs
+    android-tools
     #Languages
     kotlin
     gcc
+    cmake
     gnumake
     rustc
     cargo

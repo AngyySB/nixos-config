@@ -23,13 +23,13 @@
       zlib
       # Crucial Godot/Windowing requirements
       fontconfig
-      xorg.libX11
-      xorg.libXcursor
-      xorg.libXext
-      xorg.libXi
-      xorg.libXinerama
-      xorg.libXrandr
-      xorg.libXrender
+      libx11
+      libxcursor
+      libxext
+      libxi
+      libxinerama
+      libxrandr
+      libxrender
       libxkbcommon
       wayland
 
@@ -71,6 +71,7 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
+  networking.firewall.allowedTCPPorts = [ 8080 ];
   networking.networkmanager.enable = true;
   networking.networkmanager.plugins = with pkgs; [
     networkmanager-openconnect
@@ -130,7 +131,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    inputs.openconnect-sso.packages.${pkgs.system}.default
+    inputs.openconnect-sso.packages.${pkgs.stdenv.hostPlatform.system}.default
     wget
     tree
     jq
