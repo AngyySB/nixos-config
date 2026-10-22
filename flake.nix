@@ -14,17 +14,16 @@
     { nixpkgs, home-manager, ... }@inputs:
     let
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
-    in
-    {
-      devShells.x86_64-linux = {
-        opengl = import ./shells/opengl.nix { inherit pkgs; };
-      };
-      nixosConfigurations = {
-        nix-desktop = nixpkgs.lib.nixosSystem {
+
+      # Shared modules + home-manager, plus the host's own directory
+      mkHost =
+        hostDir:
+        nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
-            ./configuration.nix
+            hostDir
+            ./modules
             home-manager.nixosModules.default
             {
               home-manager = {
@@ -36,6 +35,14 @@
             }
           ];
         };
+    in
+    {
+      devShells.x86_64-linux = {
+        opengl = import ./shells/opengl.nix { inherit pkgs; };
+      };
+      nixosConfigurations = {
+        nix-desktop = mkHost ./hosts/desktop;
+        nix-laptop = mkHost ./hosts/laptop;
       };
     };
 }

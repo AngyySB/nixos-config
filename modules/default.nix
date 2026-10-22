@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./base.nix
     ./steam.nix
     ./pipewire.nix
     ./zsh.nix

@@ -6,16 +6,9 @@
     configType = "hyprlang";
     settings = {
       "$mod" = "SUPER";
-      monitor = [
-        "HDMI-A-2,1920x1080@144,0x0,1"
-        "HDMI-A-1,1920x1080@180,1920x0,1"
-      ];
-
       input = {
         kb_layout = "no";
         follow_mouse = 2;
-        accel_profile = "flat";
-        sensitivity = -0.10;
         numlock_by_default = true;
       };
 
@@ -77,14 +70,6 @@
         "move 1400 700, match:title ^(Friends List)$"
       ];
 
-      workspace = [
-        "1, monitor:HDMI-A-1, default:true"
-        "2, monitor:HDMI-A-1"
-        "3, monitor:HDMI-A-2, default:true"
-        "4, monitor:HDMI-A-2"
-        "10, monitor:HDMI-A-1"
-      ];
-
       animation = [
         "workspaces, 0"
         "layers, 0"
@@ -97,9 +82,6 @@
         "SUPER, T, exec, kitty"
         "SUPER, F, exec, firefox"
         "CTRL, T, exec, kity"
-
-        "SUPER CTRL, H, movecurrentworkspacetomonitor, HDMI-A-2"
-        "SUPER CTRL, L, movecurrentworkspacetomonitor, HDMI-A-1"
 
         #toggle fuzzel
         "SUPER, SPACE, exec, ${pkgs.writeShellScript "toggle-fuzzel" ''

@@ -6,6 +6,11 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
+    shellAliases = {
+      desk-reswitch = "git -C ~/nixos add -A && sudo nixos-rebuild switch --flake ~/nixos#nix-desktop";
+      lap-reswitch = "git -C ~/nixos add -A && sudo nixos-rebuild switch --flake ~/nixos#nix-laptop";
+    };
+
     plugins = [
       {
         name = "zsh-vi-mode";
@@ -16,11 +21,6 @@
     initContent = lib.mkAfter ''
               export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="bg=244"
 
-              reswitch() {
-                git -C ~/nixos add -A
-                sudo nixos-rebuild switch --flake ~/nixos#nix-desktop
-              }
-
               opengl() {
                 nix develop ~/nixos#opengl -c "$SHELL"
               }
@@ -29,13 +29,46 @@
             ntnu-vpn() {
               openconnect-sso --server vpn.ntnu.no
             }
+            ntnu-proxy() {
+              echo "Setting up NTNU proxy tunnel..."
+              echo "Remember to set Firefox to SOCKS5 proxy: 127.0.0.1:1080"
+              ssh -D 1080 -N -C jonaherm@login.stud.ntnu.no
+              echo "Tunnel closed. Remember to disable the proxy in Firefox!"
+            }
             adbc() {
              adb connect 192.168.0.151:$1
+            }
+            adbp() {
+              if [ -z "$1" ]; then
+                echo "Usage: adbp <pairing-code> [pairing-port]"
+                return 1
+              fi
+              local target
+              if [ -n "$2" ]; then
+                target="192.168.0.151:$2"
+              else
+                # Find the phone's pairing service via mDNS (only visible while the pairing dialog is open)
+                for i in 1 2 3 4 5; do
+                  target=$(adb mdns services 2>/dev/null | awk '/_adb-tls-pairing/ {print $NF; exit}')
+                  [ -n "$target" ] && break
+                  sleep 1
+                done
+                if [ -z "$target" ]; then
+                  echo "No pairing service found. Pass the port shown on the phone: adbp <code> <port>"
+                  return 1
+                fi
+              fi
+              adb pair "$target" "$1"
             }
 
            adb-storacle() {
         export ANDROID_HOME=/home/jonas/Android/Sdk
         ./gradlew installDebug && adb shell am start -n no.ntnu.storacle/.MainActivity
+      }
+
+           adb-stroker() {
+        export ANDROID_HOME=/home/jonas/Android/Sdk
+        ./gradlew installDebug && adb shell am start -n no.ntnu.stroker/.MainActivity
       }
 
             home() {

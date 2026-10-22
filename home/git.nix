@@ -1,33 +1,15 @@
 { ... }:
 {
   # --- SSH Key Routing ---
-
+  # Per-host key mappings live in hosts/<host>/home.nix (key names differ per machine)
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false; # Silences the Home Manager warning cleanly
-
-    settings = {
-      "github.com" = {
-        HostName = "github.com";
-        User = "git";
-        IdentityFile = "~/.ssh/id_ed25519";
-      };
-      "git.ntnu.no" = {
-        HostName = "git.ntnu.no";
-        User = "git";
-        IdentityFile = "~/.ssh/id_ed25519_githubNTNU";
-      };
-      "git.gvk.idi.ntnu.no" = {
-        HostName = "git.gvk.idi.ntnu.no";
-
-        User = "git";
-        IdentityFile = "~/.ssh/id_ed25519_gitlab";
-      };
-    };
   };
 
   programs.git = {
     enable = true;
+    lfs.enable = true;
     settings = {
       user = {
 

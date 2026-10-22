@@ -14,7 +14,6 @@
     bat
     zip
     unzip
-    fzf
     zoxide
     swayimg
     imv
@@ -39,11 +38,9 @@
     discord
     android-studio
     godot
-    prismlauncher
     spotify
     libreoffice
     libresprite
-    solaar
     piper
   ];
   programs.java = {
