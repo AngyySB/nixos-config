@@ -7,6 +7,8 @@
     syntaxHighlighting.enable = true;
 
     shellAliases = {
+      # Picks nix-desktop / nix-laptop from the machine's hostname
+      reswitch = "git -C ~/nixos add -A && sudo nixos-rebuild switch --flake ~/nixos#$(hostname)";
       desk-reswitch = "git -C ~/nixos add -A && sudo nixos-rebuild switch --flake ~/nixos#nix-desktop";
       lap-reswitch = "git -C ~/nixos add -A && sudo nixos-rebuild switch --flake ~/nixos#nix-laptop";
     };
