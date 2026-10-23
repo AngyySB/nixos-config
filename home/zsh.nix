@@ -28,6 +28,11 @@
               }
 
 
+              cc() {
+              claude --continue
+              }
+
+
             ntnu-vpn() {
               openconnect-sso --server vpn.ntnu.no
             }
