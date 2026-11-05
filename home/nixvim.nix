@@ -67,6 +67,13 @@
         key = "<leader>qq";
         action = "<cmd>q<CR>";
       }
+      {
+        #file explorer
+        mode = "n";
+        key = "<leader>oo";
+        action = "<cmd>Oil<CR>";
+        options.desc = "open oil";
+      }
 
       # Inner/Around Curlies {}
       {
@@ -264,6 +271,13 @@
           "<leader>fh" = "harpoon marks";
         };
       };
+      oil = {
+        enable = true;
+        settings = {
+          view_options.show_hidden = true;
+        };
+      };
+      web-devicons.enable = true;
       harpoon = {
         enable = true;
         enableTelescope = true;

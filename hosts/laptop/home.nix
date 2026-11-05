@@ -7,25 +7,27 @@
   ];
 
   wayland.windowManager.hyprland = {
-    extraConfig = ''
-      # Laptop brightness keys
-      bindel = , XF86MonBrightnessUp, exec, brightnessctl set 5%+
-      bindel = , XF86MonBrightnessDown, exec, brightnessctl set 5%-
-    '';
-
     settings = {
-      monitor = [ "eDP-1, 1920x1080@60, 0x0, 1" ];
+      monitor = [
+        { output = "eDP-1"; mode = "1920x1080@60"; position = "0x0"; scale = 1; }
+      ];
 
-      input = {
+      config.input = {
         accel_profile = "adaptive";
         sensitivity = 0.1;
         touchpad.natural_scroll = true;
       };
-
-      exec-once = [
-        "lxqt-policykit-agent"
-      ];
     };
+
+    extraConfig = ''
+      hl.on("hyprland.start", function()
+        hl.exec_cmd("lxqt-policykit-agent")
+      end)
+
+      -- Laptop brightness keys
+      hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl set 5%+"), { locked = true, repeating = true })
+      hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 5%-"), { locked = true, repeating = true })
+    '';
   };
 
   programs.waybar.settings.mainBar.output = [ "eDP-1" ];

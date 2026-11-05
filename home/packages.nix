@@ -42,6 +42,8 @@
     libreoffice
     libresprite
     piper
+    mpv
+    sqlite
   ];
   programs.java = {
     enable = true;

@@ -18,5 +18,6 @@
     ./swaync.nix
     ./tmux.nix
     ./zoxide.nix
+    ./mimeapps.nix
   ];
 }

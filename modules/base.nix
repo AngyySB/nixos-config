@@ -34,7 +34,6 @@
     ];
   };
   # Bootloader.
-  boot.initrd.systemd.enable = true;
   boot.loader.timeout = 0;
   boot.kernelParams = [
     "quiet"

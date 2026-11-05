@@ -9,5 +9,6 @@
     ./bluetooth.nix
     ./sensors.nix
     ./graphics.nix
+    ./tailscale.nix
   ];
 }
