@@ -78,6 +78,10 @@
         ./gradlew installDebug && adb shell am start -n no.ntnu.stroker/.MainActivity
       }
 
+           adb-stroker-demo() {
+        adb-stroker && scrcpy --show-touches --stay-awake --max-size=1024 --window-title=Stroker "$@"
+      }
+
             home() {
               nmcli connection up home
             }

@@ -23,6 +23,7 @@
     sendme
     git-lfs
     android-tools
+    scrcpy
     #Languages
     kotlin
     gcc
@@ -44,6 +45,8 @@
     piper
     mpv
     sqlite
+    obs-studio
+    anki
   ];
   programs.java = {
     enable = true;
