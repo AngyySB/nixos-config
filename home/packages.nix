@@ -26,6 +26,7 @@
     scrcpy
     #Languages
     kotlin
+    nodejs_22
     gcc
     cmake
     gnumake
@@ -47,6 +48,7 @@
     sqlite
     obs-studio
     anki
+    faugus-launcher
   ];
   programs.java = {
     enable = true;
