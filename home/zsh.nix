@@ -42,35 +42,31 @@
               ssh -D 1080 -N -C jonaherm@login.stud.ntnu.no
               echo "Tunnel closed. Remember to disable the proxy in Firefox!"
             }
-            adbc() {
-             adb connect 192.168.0.151:$1
+            # Accept either "ip:port" (as shown on the phone) or just a port (assumes home IP)
+            _adb_target() {
+              case "$1" in
+                *:*) echo "$1" ;;
+                *)   echo "192.168.0.151:$1" ;;
+              esac
             }
-            adbp() {
+            adbc() {
               if [ -z "$1" ]; then
-                echo "Usage: adbp <pairing-code> [pairing-port]"
+                echo "Usage: adbc <ip:port | port>"
                 return 1
               fi
-              local target
-              if [ -n "$2" ]; then
-                target="192.168.0.151:$2"
-              else
-                # Find the phone's pairing service via mDNS (only visible while the pairing dialog is open)
-                for i in 1 2 3 4 5; do
-                  target=$(adb mdns services 2>/dev/null | awk '/_adb-tls-pairing/ {print $NF; exit}')
-                  [ -n "$target" ] && break
-                  sleep 1
-                done
-                if [ -z "$target" ]; then
-                  echo "No pairing service found. Pass the port shown on the phone: adbp <code> <port>"
-                  return 1
-                fi
+              adb connect "$(_adb_target "$1")"
+            }
+            adbp() {
+              if [ -z "$1" ] || [ -z "$2" ]; then
+                echo "Usage: adbp <pairing-code> <ip:port | port>   (from the phone's 'Pair with code' dialog)"
+                return 1
               fi
-              adb pair "$target" "$1"
+              adb pair "$(_adb_target "$2")" "$1"
             }
 
            adb-storacle() {
         export ANDROID_HOME=/home/jonas/Android/Sdk
-        ./gradlew installDebug && adb shell am start -n no.ntnu.storacle/.MainActivity
+        adb reverse tcp:8080 tcp:8080 && ./gradlew installDebug && adb shell am start -n no.ntnu.storacle/.MainActivity
       }
 
            adb-stroker() {
