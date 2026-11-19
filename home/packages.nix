@@ -45,10 +45,7 @@
     libresprite
     piper
     mpv
-    sqlite
-    obs-studio
     anki
-    faugus-launcher
   ];
   programs.java = {
     enable = true;
