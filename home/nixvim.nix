@@ -1,7 +1,8 @@
-{ pkgs, config, ... }:
+{ pkgs, config, inputs, ... }:
 {
   programs.nixvim = {
     enable = true;
+    nixpkgs.source = inputs.nixpkgs;
 
     defaultEditor = true;
     viAlias = true;

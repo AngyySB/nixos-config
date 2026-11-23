@@ -67,6 +67,8 @@ in
         { match.class = "^(steam)$"; workspace = "4 silent"; }
         { match.class = "kitty"; opacity = "0.85"; }
         { match.initial_class = "^(steam_app_.*)$"; workspace = "10"; }
+        # games launched from the Godot editor (window title "<Project> (DEBUG)")
+        { match.class = "^(Godot)$"; match.title = ".*\\(DEBUG\\)$"; workspace = "10"; }
         {
           match.title = "^(Friends List)$";
           float = true;

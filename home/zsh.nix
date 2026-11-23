@@ -11,6 +11,7 @@
       reswitch = "git -C ~/nixos add -A && sudo nixos-rebuild switch --flake ~/nixos#$(hostname)";
       desk-reswitch = "git -C ~/nixos add -A && sudo nixos-rebuild switch --flake ~/nixos#nix-desktop";
       lap-reswitch = "git -C ~/nixos add -A && sudo nixos-rebuild switch --flake ~/nixos#nix-laptop";
+      wifi = "nmtui";
     };
 
     plugins = [

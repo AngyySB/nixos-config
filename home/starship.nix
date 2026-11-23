@@ -10,13 +10,13 @@
       git_branch.format = "[$symbol$branch](purple bg:#3a3659)";
       directory.style = "cyan bg:#3a3659";
       git_status.style = "bold red bg:#3a3659";
-      battery = [
-        {
-          threshold = 20;
-          charging_symbol = "⚡ ";
-          discharging_symbol = "🪫 ";
-        }
-      ];
+      battery = {
+        charging_symbol = "⚡ ";
+        discharging_symbol = "🪫 ";
+        display = [
+          { threshold = 20; }
+        ];
+      };
       character = {
         success_symbol = "i~[>](bold green bg:#3a3659)";
         error_symbol = "i~[X](bold red bg:#3a3659)";

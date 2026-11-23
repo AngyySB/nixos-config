@@ -33,6 +33,7 @@
     rustc
     cargo
     stack
+    ghc
     python3
     go
     haskellPackages.yabi
