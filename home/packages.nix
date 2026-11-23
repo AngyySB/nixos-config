@@ -34,6 +34,7 @@
     cargo
     stack
     ghc
+    haskellPackages.hoogle
     python3
     go
     haskellPackages.yabi
