@@ -25,6 +25,7 @@ in
     defaultApplications = lib.genAttrs audioTypes (_: "mpv.desktop") // {
       "x-scheme-handler/claude-cli" = "claude-code-url-handler.desktop";
       "x-scheme-handler/bruno" = "bruno.desktop";
+      "application/pdf" = "firefox.desktop";
     };
   };
   # Replace the unmanaged mimeapps.list instead of failing activation
